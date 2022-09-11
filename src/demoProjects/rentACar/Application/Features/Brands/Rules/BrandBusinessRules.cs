@@ -1,5 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Domain.Entities;
 
 namespace Application.Features.Brands.Rules;
 
@@ -18,6 +19,14 @@ public class BrandBusinessRules
         if (result.Items.Any())
         {
             throw new BusinessException("Brand name already exists");
+        }
+    }
+
+    public void BrandShouldExistWhenRequestedById(Brand brand)
+    {
+        if (brand == null)
+        {
+            throw new BusinessException("Requested brand does not exists");
         }
     }
 }
